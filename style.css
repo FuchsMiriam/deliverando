@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Lato';
+}
+
+
+header {
+    height: 100px;
+    background-color: orange;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+header img {
+    height: 75px;
+    width: auto;
+    padding-right: 15px;
+}
+
+
+.headerLeft {
+    display: flex;
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+.headerMenu {
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+
+.headerRight img {
+    height: 40px;
+    width: auto;
+    cursor: pointer;
+}
+
+
+.content {
+    display: flex;
+}
+
+
+.left {
+    width: 70%;
+    background-color: rgb(252, 252, 252);
+}
+
+.foodImage {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+.restaurantLogo{
+    width: auto;
+    height: 100px;
+}
+
+
+.shoppingCart {
+    width: 30%;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+
+.headlineBasket {
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    color: darkgrey;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 20px;
+}
+
+
+footer {
+    height: 150px;
+    background: rgb(240, 238, 235);
+}
