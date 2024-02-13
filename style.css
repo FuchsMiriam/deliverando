@@ -65,12 +65,84 @@ header img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    position: relative;
 }
 
 
-.restaurantLogo{
+.restaurantLogo {
     width: auto;
-    height: 100px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+}
+
+
+.restaurantDescription {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.leftRating {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+
+.restaurantName {
+    font-size: 20px;
+}
+
+
+.starGroup {
+    margin-top: 5px;
+    display: flex;
+    cursor: pointer;
+}
+
+
+.ratingStar {
+    width: 20px;
+    height: auto;
+    cursor: pointer;
+}
+
+
+.ratingText {
+    margin-left: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.rightRating {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+
+.infoSection {
+    height: 30px;
+    width: auto;
+    border: 1px solid darkgrey;
+    cursor: pointer;
+}
+
+
+.menuSelection{
+    display: flex;
+
+}
+
+.selectionImage{
+    height: 30px;
+    width: auto;
 }
 
 
