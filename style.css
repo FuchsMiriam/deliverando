@@ -137,14 +137,34 @@ header img {
 
 .menuSelection{
     display: flex;
-
+    justify-content: space-evenly;
+    margin-top: 25px;
+    background-color: rgba(255, 166, 0, 0.315);
+    padding: 30px;
 }
 
 .selectionImage{
     height: 30px;
     width: auto;
+    cursor: pointer;
 }
 
+
+.foodSection{
+margin: 30px;
+font-size: 20px;
+font-weight: 700;
+}
+
+
+.card{
+    margin-bottom: 10px;
+}
+
+
+.popularDish{
+    background-color: rgba(255, 166, 0, 0.315);
+}
 
 .shoppingCart {
     width: 30%;
