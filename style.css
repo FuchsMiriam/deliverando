@@ -165,6 +165,11 @@ header img {
 }
 
 
+.card:hover {
+    background-color: rgba(255, 166, 0, 0.137);
+}
+
+
 .popularDish {
     background-color: rgba(255, 166, 0, 0.315);
 }
@@ -180,10 +185,11 @@ header img {
     height: 25px;
     width: auto;
     border: 1px solid darkgrey;
+    cursor: pointer;
 }
 
 
-.addSection{
+.addSection {
     display: flex;
     justify-content: end;
 }
@@ -212,14 +218,14 @@ footer {
 }
 
 
-.footerUnit{
+.footerUnit {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 
-.footerLinks{
+.footerLinks {
     color: black;
     text-decoration: none;
     cursor: pointer;

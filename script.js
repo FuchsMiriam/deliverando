@@ -1,5 +1,5 @@
-let shoppingBasket = [];
-let prices = [];
+let shoppingBasket = ['Frühlingsrollen', 'Wan-Tan-Suppe', 'Reis mit Gemüse', 'Gebackene Banane'];
+let prices = [5.50, 6.50, 11.20, 7.00];
 
 function addToBasket(name, price) {
     shoppingBasket.push(name);
