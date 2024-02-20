@@ -49,9 +49,11 @@ let dishes = [
 
 let basketItems = [];
 
+
 document.addEventListener("DOMContentLoaded", function () {
     showDishes();
 });
+
 
 function showDishes() {
     var container = document.getElementById('dishContainer');
@@ -79,10 +81,12 @@ function showDishes() {
     }
 }
 
+
 function addToBasket(index) {
     basketItems.push(dishes[index]);
     showBasket();
 }
+
 
 function showBasket() {
     let basket = document.getElementById('basket');
@@ -90,8 +94,10 @@ function showBasket() {
 
     if (basketItems.length > 0) {
         basketItems.forEach(function (item, i) {
-            basket.innerHTML += `<div class="addedDishes">
-                ${item.name}<br>${item.price}
+            basket.innerHTML += `<div class="card card-body cardDistance">
+                <div class="basketContent">
+                <p>${item.name}</p>
+                <p>${item.price}</p></div>
                 <div class="deleteContainer">
                     <img class="garbageImage" src="./img/garbage.png" alt="Mülleimer" onclick="deleteDish(${i})">
                 </div>
@@ -107,6 +113,7 @@ function showBasket() {
         `;
     }
 }
+
 
 function deleteDish(i) {
     basketItems.splice(i, 1);
