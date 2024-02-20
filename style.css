@@ -54,6 +54,12 @@ header img {
 }
 
 
+.flagImg{
+    width: 40px !important;
+    height: 20px !important;
+}
+
+
 .content {
     display: flex;
 }
@@ -63,6 +69,7 @@ header img {
     width: 70%;
     background-color: rgb(252, 252, 252);
 }
+
 
 .foodImage {
     width: 100%;
@@ -153,6 +160,20 @@ header img {
 }
 
 
+.selectionLink{
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+
+.selectionLink:hover{
+    text-decoration: underline;
+}
+
+
 .foodSection {
     margin: 30px;
     font-size: 20px;
@@ -186,6 +207,7 @@ header img {
     width: auto;
     border: 1px solid darkgrey;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 
@@ -261,6 +283,7 @@ header img {
     width: 30px;
     height: auto;
     padding-left: 10px;
+    cursor: pointer;
 }
 
 
@@ -271,6 +294,7 @@ header img {
     color: darkgrey;
     border-bottom: 1px solid lightgrey;
     padding-bottom: 20px;
+    padding-top: 10px;
 }
 
 
@@ -293,4 +317,9 @@ footer {
     cursor: pointer;
     font-weight: 700;
     padding-left: 30px;
+}
+
+
+.footerLinks:hover{
+    text-decoration: underline;
 }
