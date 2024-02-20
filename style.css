@@ -54,7 +54,7 @@ header img {
 }
 
 
-.flagImg{
+.flagImg {
     width: 40px !important;
     height: 20px !important;
 }
@@ -160,7 +160,7 @@ header img {
 }
 
 
-.selectionLink{
+.selectionLink {
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -169,7 +169,7 @@ header img {
 }
 
 
-.selectionLink:hover{
+.selectionLink:hover {
     text-decoration: underline;
 }
 
@@ -226,6 +226,18 @@ header img {
 }
 
 
+.headlineBasket {
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: darkgrey;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+
 .basketWhole {
     margin-top: 20px;
 }
@@ -242,24 +254,26 @@ header img {
 .basketImage {
     width: 60px;
     height: auto;
+    opacity: 0.5;
 }
 
 
 .cartHeadline {
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 20px;
     text-align: center;
+    color: lightgrey;
 }
 
 
 .cartH2 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     text-align: center;
+    color: lightgrey;
 }
 
 
-.cardDistance{
+.cardDistance {
     margin: 15px;
 }
 
@@ -287,17 +301,6 @@ header img {
 }
 
 
-.headlineBasket {
-    display: flex;
-    justify-content: center;
-    font-size: 22px;
-    color: darkgrey;
-    border-bottom: 1px solid lightgrey;
-    padding-bottom: 20px;
-    padding-top: 10px;
-}
-
-
 footer {
     height: 150px;
     background: rgb(240, 238, 235);
@@ -320,6 +323,22 @@ footer {
 }
 
 
-.footerLinks:hover{
+.footerLinks:hover {
     text-decoration: underline;
+}
+
+
+.referralPositioning {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+
+.referral {
+    font-size: 10px;
+    text-decoration: none;
+    color: lightgrey;
 }
