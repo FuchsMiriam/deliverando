@@ -86,8 +86,18 @@ function showDishes() {
 }
 
 
-function addToBasket(index) {
-    basketItems.push(dishes[index]);
+function addToBasket(i) {
+    let existingItemIndex = basketItems.findIndex(item => item.name === dishes[i].name);
+    if (existingItemIndex !== -1) {
+        let existingItem = basketItems[existingItemIndex];
+        existingItem.amount++;
+        amount[existingItemIndex] = existingItem.amount;;
+    } else {
+        let newItem = Object.assign({}, dishes[i]);
+        newItem.amount = 1;
+        basketItems.push(newItem);
+        amount.push(1);
+    }
     saveBasket();
     showBasket();
 }
@@ -105,6 +115,7 @@ function showBasket() {
                 <p>${item.price.toFixed(2).replace('.', ',')} €</p></div>
                 <div class="deleteContainer">
                     <img class="garbageImage" src="./img/minusknopf.png" alt="Minus" onclick="deleteAmount(${i})">
+                    ${amount[i]}
                     <img class="garbageImage" src="./img/plus.png" alt="Plus" onclick="addAmount(${i})">
                 </div>
             </div>`;
@@ -122,34 +133,49 @@ function showBasket() {
 
 
 function saveBasket() {
-    localStorage.setItem('basketItems', JSON.stringify(basketItems));
+    const basketData = {
+        items: basketItems,
+        amounts: amount
+    };
+    localStorage.setItem('basketData', JSON.stringify(basketData));
 }
 
 
 function loadBasket() {
-    let savedBasket = localStorage.getItem('basketItems');
-    if (savedBasket) {
-        basketItems = JSON.parse(savedBasket);
+    let savedBasketData = localStorage.getItem('basketData');
+    if (savedBasketData) {
+       const basketData = JSON.parse(savedBasketData);
+       basketItems = basketData.items;
+       amount = basketData.amounts;
     }
 }
 
 
-function deleteAmount(i) {
-    basketItems.splice(i, 1);
+function addAmount(i) {
+    basketItems[i].amount++;
+    amount[i] = basketItems[i].amount;
     saveBasket();
     showBasket();
 }
 
 
-function addAmount(){
-
+function deleteAmount(index) {
+    if (basketItems[index].amount > 1) {
+        basketItems[index].amount--;
+        amount[index] = basketItems[index].amount;
+    } else {
+        basketItems.splice(index, 1);
+        amount.splice(index, 1);
+    }
+    saveBasket();
+    showBasket();
 }
 
 
 function updateShoppingBasket() {
     let sum = 0;
     for (let i = 0; i < basketItems.length; i++) {
-        sum += basketItems[i].price * basketItems[i].amount;
+        sum += basketItems[i].price * amount[i];
     }
 
     let finalSum = sum + 2.50;

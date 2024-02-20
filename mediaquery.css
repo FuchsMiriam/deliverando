@@ -1,0 +1,78 @@
+@media(max-width: 1000px) {
+    .restaurantLogo {
+        height: 100px;
+    }
+
+
+    .restaurantName {
+        font-size: 18px;
+    }
+
+
+    .ratingStar {
+        height: 15px;
+    }
+
+
+    .starGroup {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .infoSection {
+        height: 25px;
+    }
+}
+
+
+@media(max-width: 800px) {
+    .media {
+        font-size: 16px;
+    }
+
+
+    .restaurantName {
+        font-size: 14px;
+    }
+
+
+    .ratingStar {
+        height: 10px;
+    }
+
+
+    .ratingText {
+        font-size: 14px;
+    }
+
+
+    .menuSelction {
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+
+    .selectionLink {
+        font-size: 12px;
+    }
+
+
+    .dishName {
+        font-size: 16px;
+    }
+
+
+    .dishDescription {
+        font-size: 14px
+    }
+
+    dishPrice {
+        font-size: 16px;
+    }
+
+
+    .basketContent {
+        font-size: 16px;
+    }
+}
