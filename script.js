@@ -50,7 +50,6 @@ let dishes = [
 let basketItems = [];
 let amount = [];
 let addedPrices = [];
-let extraCost = 2.50;
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -102,7 +101,6 @@ function addToBasket(i) {
         addedPrices.push(newItem.price);
     }
     saveBasket();
-    updateShoppingBasket();
     showBasket();
 }
 
@@ -110,33 +108,63 @@ function addToBasket(i) {
 function showBasket() {
     let basket = document.getElementById('basket');
     basket.innerHTML = ``;
-
     if (basketItems.length > 0) {
         basketItems.forEach(function (item, i) {
             basket.innerHTML += `<div class="card card-body cardDistance">
-                <div class="basketContent">
-                <p>${item.name}</p>
-                <p>${item.price.toFixed(2).replace('.', ',')} €</p></div>
-                <div class="deleteContainer">
-                    <img class="garbageImage" src="./img/minusknopf.png" alt="Minus" onclick="deleteAmount(${i})">
-                    ${amount[i]}
-                    <img class="garbageImage" src="./img/plus.png" alt="Plus" onclick="addAmount(${i})">
-                </div>
-            </div>`;
+                  <div class="basketContent">
+                  <p>${item.name}</p>
+                  <p>${item.price.toFixed(2).replace('.', ',')} €</p></div>
+                  <div class="deleteContainer">
+                      <img class="garbageImage" src="./img/minusknopf.png" alt="Entfernen" onclick="deleteAmount(${i})">
+                      <span class="amountCounter">${amount[i]}</span>
+                      <img class="garbageImage" src="./img/plus.png" alt="Hinzufügen" onclick="addAmount(${i})">
+                  </div>
+                  </div>`;
         });
+        // Hinzufügen der Berechnungen
+        basket.innerHTML += `<div class="totalSumArea">
+          <p>Zwischensumme: ${calculateSubtotal().toFixed(2).replace('.', ',')} €</p>
+          <p>Lieferkosten: ${calculateDeliveryCosts().toFixed(2).replace('.', ',')} €</p>
+          <p><b><u>Gesamt: ${calculateTotal().toFixed(2).replace('.', ',')} €</u></b></p>
+      </div>`;
+        basket.innerHTML += `<div class="orderButton">
+          <button class="orderButtonBackground">Bestellen</button>
+      </div>`;
     } else {
         basket.innerHTML = `
-            <div class="basketStyle">
-                <img class="basketImage" src="./img/shopping-cart.png" alt="Warenkorb">
-                <h1 class="cartHeadline"><b>Fülle deinen Warenkorb</b></h1>
-                <h2 class="cartH2">Füge leckere Gerichte aus der Speisekarte hinzu und bestelle dein Essen.</h2>
-            </div>
-        `;
+              <div class="basketStyle">
+                  <img class="basketImage" src="./img/shopping-cart.png" alt="Warenkorb">
+                  <h1 class="cartHeadline"><b>Fülle deinen Warenkorb</b></h1>
+                  <h2 class="cartH2">Füge leckere Gerichte aus der Speisekarte hinzu und bestelle dein Essen.</h2>
+              </div>
+          `;
     }
 }
 
 
-/*Local Storage*/
+// Funktion zur Berechnung der Zwischensumme
+function calculateSubtotal() {
+    let subtotal = 0;
+    for (let i = 0; i < basketItems.length; i++) {
+        subtotal += basketItems[i].price * amount[i];
+    }
+    return subtotal;
+}
+// Funktion zur Berechnung der Lieferkosten
+function calculateDeliveryCosts() {
+    if (calculateSubtotal() > 15) {
+        return 0;
+    } else {
+        return 2.50;
+    }
+}
+// Funktion zur Berechnung der Gesamtsumme
+function calculateTotal() {
+    return calculateSubtotal() + calculateDeliveryCosts();
+}
+
+
+//Local Storage
 
 function saveBasket() {
     const basketData = {
@@ -144,53 +172,44 @@ function saveBasket() {
         amounts: amount
     };
     localStorage.setItem('basketData', JSON.stringify(basketData));
+    localStorage.setItem('addedPrices', JSON.stringify(addedPrices));
 }
 
 
 function loadBasket() {
     let savedBasketData = localStorage.getItem('basketData');
-    if (savedBasketData) {
+    let savedAddedPrices = localStorage.getItem('addedPrices');
+    if (savedBasketData && savedAddedPrices) {
         const basketData = JSON.parse(savedBasketData);
+        const savedPrices = JSON.parse(savedAddedPrices);
         basketItems = basketData.items;
         amount = basketData.amounts;
+        addedPrices = savedPrices;
     }
 }
 
 
-/*Adding and deleting*/
+//Adding and deleting
 
 function addAmount(i) {
     basketItems[i].amount++;
     amount[i] = basketItems[i].amount;
+    addedPrices[i] += basketItems[i].price;
     saveBasket();
     showBasket();
 }
 
 
-function deleteAmount(index) {
-    if (basketItems[index].amount > 1) {
-        basketItems[index].amount--;
-        amount[index] = basketItems[index].amount;
-        addedPrices[index] -= basketItems[index].price;
-    } else {
-        addedPrices.splice(index, 1);
-        basketItems.splice(index, 1);
-        amount.splice(index, 1);
+function deleteAmount(i) {
+    basketItems[i].amount--;
+    amount[i]--;
+    if (basketItems[i].amount === 0) {
+        basketItems.splice(i, 1);
+        amount.splice(i, 1);
     }
     saveBasket();
-    updateShoppingBasket();
     showBasket();
 }
 
 
 
-function updateShoppingBasket() {
-    let sum = 0;
-    for (let i = 0; i < basketItems.length; i++) {
-        sum += basketItems[i].price * amount[i];
-    }
-
-    let finalSum = sum + 2.50;
-
-    document.getElementById('totalSum').innerHTML = finalSum.toFixed(2).replace('.', ',') + " €";
-}
