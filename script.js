@@ -109,40 +109,56 @@ function showBasket() {
     let basket = document.getElementById('basket');
     basket.innerHTML = ``;
     if (basketItems.length > 0) {
-        basketItems.forEach(function (item, i) {
-            basket.innerHTML += `<div class="card card-body cardDistance">
-                  <div class="basketContent">
-                  <p>${item.name}</p>
-                  <p>${item.price.toFixed(2).replace('.', ',')} €</p></div>
-                  <div class="deleteContainer">
-                      <img class="garbageImage" src="./img/minusknopf.png" alt="Entfernen" onclick="deleteAmount(${i})">
-                      <span class="amountCounter">${amount[i]}</span>
-                      <img class="garbageImage" src="./img/plus.png" alt="Hinzufügen" onclick="addAmount(${i})">
-                  </div>
-                  </div>`;
-        });
-        // Hinzufügen der Berechnungen
-        basket.innerHTML += `<div class="totalSumArea">
+        addedItems();
+        showCosts();
+    } else {
+        emptyBasket();
+    }
+}
+
+
+function addedItems() {
+    basketItems.forEach(function (item, i) {
+        basket.innerHTML += `<div class="card card-body cardDistance">
+              <div class="basketContent">
+              <p>${item.name}</p>
+              <p>${item.price.toFixed(2).replace('.', ',')} €</p></div>
+              <div class="deleteContainer">
+                  <img class="garbageImage" src="./img/minusknopf.png" alt="Entfernen" onclick="deleteAmount(${i})">
+                  <span class="amountCounter">${amount[i]}</span>
+                  <img class="garbageImage" src="./img/plus.png" alt="Hinzufügen" onclick="addAmount(${i})">
+              </div>
+              </div>`;
+    });
+}
+
+
+function showCosts() {
+    basket.innerHTML += `<div class="totalSumArea">
           <p>Zwischensumme: ${calculateSubtotal().toFixed(2).replace('.', ',')} €</p>
           <p>Lieferkosten: ${calculateDeliveryCosts().toFixed(2).replace('.', ',')} €</p>
           <p><b><u>Gesamt: ${calculateTotal().toFixed(2).replace('.', ',')} €</u></b></p>
+          <p style="font-size: 14px; color: darkgrey;">${deliveryCostText()}</p>
       </div>`;
-        basket.innerHTML += `<div class="orderButton">
+    basket.innerHTML += `<div class="orderButton">
           <button class="orderButtonBackground">Bestellen</button>
       </div>`;
-    } else {
-        basket.innerHTML = `
+}
+
+
+function emptyBasket() {
+    basket.innerHTML = `
               <div class="basketStyle">
                   <img class="basketImage" src="./img/shopping-cart.png" alt="Warenkorb">
                   <h1 class="cartHeadline"><b>Fülle deinen Warenkorb</b></h1>
                   <h2 class="cartH2">Füge leckere Gerichte aus der Speisekarte hinzu und bestelle dein Essen.</h2>
               </div>
           `;
-    }
 }
 
 
-// Funktion zur Berechnung der Zwischensumme
+// Calculationg subtotal
+
 function calculateSubtotal() {
     let subtotal = 0;
     for (let i = 0; i < basketItems.length; i++) {
@@ -150,7 +166,10 @@ function calculateSubtotal() {
     }
     return subtotal;
 }
-// Funktion zur Berechnung der Lieferkosten
+
+
+// Calculating delivery costs
+
 function calculateDeliveryCosts() {
     if (calculateSubtotal() > 15) {
         return 0;
@@ -158,9 +177,21 @@ function calculateDeliveryCosts() {
         return 2.50;
     }
 }
-// Funktion zur Berechnung der Gesamtsumme
+
+
+// Calculating total sum
+
 function calculateTotal() {
     return calculateSubtotal() + calculateDeliveryCosts();
+}
+
+
+function deliveryCostText() {
+    if (calculateSubtotal() > 15) {
+        return ``;
+    } else {
+        return `<i>Bestelle für min. 15 Euro für eine kostenlose Lieferung</i>`;
+    }
 }
 
 
