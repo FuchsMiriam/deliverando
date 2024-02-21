@@ -48,8 +48,9 @@ let dishes = [
 
 
 let basketItems = [];
-
 let amount = [];
+let addedPrices = [];
+let extraCost = 2.50;
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -91,14 +92,17 @@ function addToBasket(i) {
     if (existingItemIndex !== -1) {
         let existingItem = basketItems[existingItemIndex];
         existingItem.amount++;
-        amount[existingItemIndex] = existingItem.amount;;
+        amount[existingItemIndex] = existingItem.amount;
+        addedPrices[existingItemIndex] += existingItem.price;
     } else {
         let newItem = Object.assign({}, dishes[i]);
         newItem.amount = 1;
         basketItems.push(newItem);
         amount.push(1);
+        addedPrices.push(newItem.price);
     }
     saveBasket();
+    updateShoppingBasket();
     showBasket();
 }
 
@@ -132,6 +136,8 @@ function showBasket() {
 }
 
 
+/*Local Storage*/
+
 function saveBasket() {
     const basketData = {
         items: basketItems,
@@ -144,12 +150,14 @@ function saveBasket() {
 function loadBasket() {
     let savedBasketData = localStorage.getItem('basketData');
     if (savedBasketData) {
-       const basketData = JSON.parse(savedBasketData);
-       basketItems = basketData.items;
-       amount = basketData.amounts;
+        const basketData = JSON.parse(savedBasketData);
+        basketItems = basketData.items;
+        amount = basketData.amounts;
     }
 }
 
+
+/*Adding and deleting*/
 
 function addAmount(i) {
     basketItems[i].amount++;
@@ -163,13 +171,17 @@ function deleteAmount(index) {
     if (basketItems[index].amount > 1) {
         basketItems[index].amount--;
         amount[index] = basketItems[index].amount;
+        addedPrices[index] -= basketItems[index].price;
     } else {
+        addedPrices.splice(index, 1);
         basketItems.splice(index, 1);
         amount.splice(index, 1);
     }
     saveBasket();
+    updateShoppingBasket();
     showBasket();
 }
+
 
 
 function updateShoppingBasket() {
