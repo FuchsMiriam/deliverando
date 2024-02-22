@@ -320,6 +320,12 @@ header img {
 }
 
 
+.deliveryCost {
+    font-size: 14px;
+    color: darkgrey;
+}
+
+
 .orderButton {
     display: flex;
     justify-content: center;

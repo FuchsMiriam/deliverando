@@ -1,3 +1,10 @@
+@media(max-width: 1200px) {
+    .deliveryCost {
+        padding-left: 10px;
+    }
+}
+
+
 @media(max-width: 1000px) {
     .restaurantLogo {
         height: 100px;
@@ -47,7 +54,7 @@
     }
 
 
-    .menuSelction {
+    .menuSelection {
         align-items: center;
         justify-content: space-evenly;
     }
@@ -64,7 +71,7 @@
 
 
     .dishDescription {
-        font-size: 14px
+        font-size: 14px;
     }
 
     .dishPrice {
@@ -72,7 +79,102 @@
     }
 
 
-    .basketContent {
+    .headlineBasket {
         font-size: 16px;
+    }
+
+
+    .basketContent {
+        font-size: 14px;
+    }
+
+
+    .totalSumArea {
+        font-size: 14px;
+    }
+
+
+    .deliveryCost {
+        font-size: 12px;
+    }
+}
+
+
+@media(max-width: 700px) {
+    header img {
+        height: 60px;
+    }
+
+
+    .headerMenu {
+        font-size: 18px;
+    }
+
+
+    .restaurantLogo {
+        height: 70px;
+    }
+
+    .menuSelection {
+        display: none;
+    }
+
+
+    .dishName {
+        font-size: 14px;
+    }
+
+
+    .dishDescription {
+        font-size: 12px;
+    }
+
+    .dishPrice {
+        font-size: 14px;
+    }
+
+
+
+    .basketContent {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .mediaqueryItem {
+        margin-bottom: 0;
+    }
+
+
+    .garbageImage {
+        width: 15px;
+        height: 15px;
+    }
+
+
+    .amountCounter {
+        font-size: 12px;
+    }
+
+}
+
+
+@media(max-width: 650px) {
+    .restaurantLogo {
+        display: none;
+    }
+}
+
+
+@media(max-width: 610px) {
+    .totalSumArea {
+        font-size: 12px;
+    }
+}
+
+
+@media(max-width: 560px) {
+    .headerMenu {
+        display: none;
     }
 }

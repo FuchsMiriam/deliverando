@@ -121,7 +121,7 @@ function addedItems() {
     basketItems.forEach(function (item, i) {
         basket.innerHTML += `<div class="card card-body cardDistance">
               <div class="basketContent">
-              <p>${item.name}</p>
+              <p class="mediaqueryItem">${item.name}</p>
               <p>${item.price.toFixed(2).replace('.', ',')} €</p></div>
               <div class="deleteContainer">
                   <img class="garbageImage" src="./img/minusknopf.png" alt="Entfernen" onclick="deleteAmount(${i})">
@@ -138,7 +138,7 @@ function showCosts() {
           <p>Zwischensumme: ${calculateSubtotal().toFixed(2).replace('.', ',')} €</p>
           <p>Lieferkosten: ${calculateDeliveryCosts().toFixed(2).replace('.', ',')} €</p>
           <p><b><u>Gesamt: ${calculateTotal().toFixed(2).replace('.', ',')} €</u></b></p>
-          <p style="font-size: 14px; color: darkgrey;">${deliveryCostText()}</p>
+          <p class="deliveryCost">${deliveryCostText()}</p>
       </div>`;
     basket.innerHTML += `<div class="orderButton">
           <button class="orderButtonBackground">Bestellen</button>
