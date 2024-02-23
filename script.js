@@ -64,25 +64,30 @@ function showDishes() {
     if (container) {
         container.innerHTML = ``;
 
-        dishes.forEach(function (dish, index) {
-            container.innerHTML += `
-                <div class="card">
-                    <div class="card-body">
-                        <div class="addSection">
-                            <img onclick="addToBasket(${index})" class="addImage" src="./img/add.png" alt="Hinzufügen">
-                        </div>
-                        <span class="dishName">${dish.name}</span>
-                        <br>
-                        <span class="dishDescription">${dish.description}</span>
-                        <br>
-                        <span class="dishPrice">${dish.price.toFixed(2).replace('.', ',')} €</span>
-                    </div>
-                </div>
-            `;
-        });
+        renderDishes(container);
     } else {
         console.error("Das Element mit der ID 'dishContainer' wurde nicht gefunden.");
     }
+}
+
+
+function renderDishes(container) {
+    dishes.forEach(function (dish, index) {
+        container.innerHTML += `
+            <div class="card">
+                <div class="card-body">
+                    <div class="addSection">
+                        <img onclick="addToBasket(${index})" class="addImage" src="./img/add.png" alt="Hinzufügen">
+                    </div>
+                    <span class="dishName">${dish.name}</span>
+                    <br>
+                    <span class="dishDescription">${dish.description}</span>
+                    <br>
+                    <span class="dishPrice">${dish.price.toFixed(2).replace('.', ',')} €</span>
+                </div>
+            </div>
+        `;
+    });
 }
 
 
